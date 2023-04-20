@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Movie>
+
+@{
+    ViewData["Title"] = "List of Movies";
+}
+
+<div calss="row" style="display:grid; grid-template-columns: auto auto auto auto; gap: 20px;">
+    @foreach (var item in Model)
+    {
+        <div class="border-primary mb-3">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @item.Name
+                                    <a class="tect-white float-right"><i class="bg-info bi-pencil-square"></i></a>
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="@item.ImageURL" width="100%" alt="@item.Name">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <p class="card-text">@item.Description</p>
+                            <p class="card-text"><d>Cinema: </d>@item.Cinema.Name</p>
+                            <p class="card-text"><d>Category: </d>@item.MovieCategory</p>
+                            <p class="card-text"><d>Start Date: </d>@item.StartDate.ToString("dd MMM yy")</p>
+                            <p class="card-text"><d>End Date: </d>@item.EndDate.ToString("dd MMM yy")</p>
+                            <p class="card-text">
+                                <b>Status: </b>
+                                @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndDate)
+                                {
+                                    <span class="badge bg-success text-white">AVAILABLE</span>
+                                } else if(DateTime.Now > item.EndDate)
+                                {
+                                    <span class="badge bg-danger text-white">EXPIRED</span>
+                                } else
+                                {
+                                    <span class="badge bg-primary text-white">UPCOMING</span>
+                                }
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-footer">
+                            <p class="card-text">
+                                <a class="btn btn-outline-primary float-right"><i class="bi bi-eye-fill"></i>Show Details</a>
+                                <a class="btn btn-success text-white"><i class="bi bi-cart-plus"></i>Add to Cart (Price @item.Price.ToString("c"))</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

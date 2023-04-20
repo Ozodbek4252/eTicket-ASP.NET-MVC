@@ -23,7 +23,7 @@ namespace eTickets.Data.Services
 
         public async Task<IEnumerable<Actor>> GetAll()
         {
-            var result = await _context.Actors.ToListAsync()();
+            var result = await _context.Actors.ToListAsync();
             return result;
         }
 

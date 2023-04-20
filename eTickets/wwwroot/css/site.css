@@ -20,3 +20,22 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+
+
+
+
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
